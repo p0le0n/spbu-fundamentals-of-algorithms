@@ -5,7 +5,6 @@ import networkx as nx
 
 from src.plotting import plot_graph
 
-
 def dijkstra_sp(G: nx.Graph, source_node="0") -> dict[Any, list[Any]]:
     unvisited_set = set(G.nodes())
     visited_set = set()

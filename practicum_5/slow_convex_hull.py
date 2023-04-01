@@ -4,6 +4,7 @@ from numpy.typing import NDArray
 from src.plotting import plot_points
 
 
+<<<<<<< HEAD
 def isclose(p: NDArray, q: NDArray) -> bool:
     return np.isclose(p, q).all()
 
@@ -46,20 +47,31 @@ def slow_convex_hull(points: NDArray) -> NDArray:
                             valid = False
                 if valid:
                     ch[tuple(p)] = tuple(q)
+=======
+def signed_area(p: NDArray, q: NDArray, r: NDArray) -> bool:
 
-    _, q = ch.popitem()
-    clockwise_sorted_ch = [q]  # set of convex hull points sorted clockwise
-    while ch:
-        next_point = ch.pop(clockwise_sorted_ch[-1])
-        clockwise_sorted_ch.append(next_point)
-    return np.array(clockwise_sorted_ch)
+    ##########################
+    ### PUT YOUR CODE HERE ###
+    ##########################
+
+    pass
+
+
+def slow_convex_hull(points: NDArray) -> NDArray:
+>>>>>>> main
+
+    ##########################
+    ### PUT YOUR CODE HERE ###
+    ##########################
+
+    pass
 
 
 if __name__ == "__main__":
     points = np.loadtxt("./points_5.txt")
     plot_points(points, markersize=20)
 
-    # 1. Slow convex hull. Trivial to implement, but O(N^3)
+    # Slow convex hull. Trivial to implement, but O(N^3)
     print("Slow convex hull")
     print("-" * 32)
     convex_hull = slow_convex_hull(points)

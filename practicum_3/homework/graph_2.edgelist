@@ -1,0 +1,7 @@
+a b {'weight': 3}
+a c {'weight': 4}
+a e {'weight': 1}
+b c {'weight': 5}
+c d {'weight': 2}
+c e {'weight': 6}
+d e {'weight': 7}

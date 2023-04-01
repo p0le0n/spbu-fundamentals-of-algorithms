@@ -15,7 +15,7 @@ def plot_graph(
     if highlighted_edges:
         for i, edge in enumerate(G.edges()):
             if edge in highlighted_edges or (edge[1], edge[0]) in highlighted_edges:
-                edge_color_list[i] = "red"
+                edge_color_list[i] = "yellow"
     options = dict(
         font_size=12,
         node_size=500,

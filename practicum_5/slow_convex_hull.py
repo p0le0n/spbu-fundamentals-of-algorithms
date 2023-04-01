@@ -8,8 +8,8 @@ def isclose(p: NDArray, q: NDArray) -> bool:
     return np.isclose(p, q).all()
 
 
-def signed_area(p: NDArray, q: NDArray, r: NDArray) -> bool:
-    signed_area = np.linalg.det(
+def signed_area(p: NDArray, q: NDArray, r: NDArray) -> float:
+    signed_area = 0.5 * np.linalg.det(
         np.array(
             [
                 np.concatenate((p, [1])),
@@ -20,22 +20,20 @@ def signed_area(p: NDArray, q: NDArray, r: NDArray) -> bool:
     )
     # if np.abs(signed_area) < 0.1:
     #    print(int(np.rint(signed_area)))
-    return int(
-        np.rint(signed_area)
-    )  # check what happens if we use "return signed_area" instead!
+    return int(np.rint(signed_area))  # check what happens if we use "return signed_area" instead!
 
 
 def slow_convex_hull(points: NDArray) -> NDArray:
     ch = {}  # key is input point, value is output point; to avoid sorting
-    for p in points:  # greedy thru all the points
+    for p in points:  # greedy through all the points
         for q in points:  # --//--
             if not isclose(p, q):
                 valid = True  # flag to control "no point to the left"
-                for r in points:  # greedy thru all the points
+                for r in points:  # greedy through all the points
                     if (not isclose(r, p)) and (not isclose(r, q)):
                         s = signed_area(p, q, r)
                         if (
-                            signed_area(p, q, r) == 0
+                            s == 0
                         ):  # r is on the same line as p and q
                             pq_dist = np.linalg.norm(p - q)
                             pr_dist = np.linalg.norm(p - r)
@@ -43,7 +41,7 @@ def slow_convex_hull(points: NDArray) -> NDArray:
                             if pr_dist + qr_dist <= pq_dist:
                                 valid = False
                         elif (
-                            signed_area(p, q, r) > 0
+                            s > 0
                         ):  # r is to the left of p -> q vector
                             valid = False
                 if valid:
@@ -58,7 +56,7 @@ def slow_convex_hull(points: NDArray) -> NDArray:
 
 
 if __name__ == "__main__":
-    points = np.loadtxt("practicum_5/points_1.txt")
+    points = np.loadtxt("./points_5.txt")
     plot_points(points, markersize=20)
 
     # 1. Slow convex hull. Trivial to implement, but O(N^3)

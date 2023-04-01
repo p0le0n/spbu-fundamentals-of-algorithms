@@ -15,7 +15,8 @@ class Element:
 
 class DoublyLinkedList:
     def __init__(self) -> None:
-        self.head: Element = None
+        self.head: Element
+        self.head = None
 
     def __repr__(self) -> str:
         return str(self)
@@ -31,10 +32,10 @@ class DoublyLinkedList:
     def empty(self):
         return self.head is None
 
-    def search(self, k: Element) -> Element:
+    def search(self, key: Any) -> Optional[Element]:
         """Complexity: O(n)"""
         x = self.head
-        while (x is not None) and (x.key != k.key):
+        while (x is not None) and (x.key != key.key):
             x = x.next
         return x
 
@@ -112,15 +113,7 @@ if __name__ == "__main__":
     # Let's solve Add Two Numbers problem from leetcode.com:
     # https://leetcode.com/problems/add-two-numbers/description/
 
-    # l = DoublyLinkedList()
-    # l.insert(Element(key=1))
-    # l.insert(Element(key=2))
-    # l.insert(Element(key=3))
-    # l.insert(Element(key=4))
-    # e = l.search(Element(key=3))
-    # l.remove(e)
-
-    with open("practicum_4/add_two_numbers_cases.yaml", "r") as f:
+    with open("./add_two_numbers_cases.yaml", "r") as f:
         cases = yaml.safe_load(f)
 
     for c in cases:

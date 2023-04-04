@@ -4,19 +4,15 @@ from time import perf_counter
 
 class Maze:
 
-    start_pos = 0
-    end_pos = (0, 0)
-
     def __init__(self, list_view: list[list[str]]):
         self.list_view = list_view
         self.start_j = None
         for j, sym in enumerate(self.list_view[0]):
             if sym == "O":
                 self.start_j = j
-                Maze.start_pos = self.start_j
         for j, sym in enumerate(self.list_view[-1]):
             if sym == "X":
-                Maze.end_pos = (len(list_view)-1, j)
+                self.end_pos = (len(list_view)-1, j)
 
     @classmethod
     def from_file(cls, filename):
@@ -59,13 +55,13 @@ class Path():
 
     def __init__(self):
         self.value = ""
-        self.coords = (0, Maze.start_pos)
+        self.coords = (0, maze.start_j)
 
 def solve(maze: Maze):
     q = queue.Queue()
     path = Path()
     q.put(path)
-    while not path.coords == Maze.end_pos:
+    while not path.coords == maze.end_pos:
         path = q.get()
         for move in _possible_moves(path.value):
             new_path = Path()

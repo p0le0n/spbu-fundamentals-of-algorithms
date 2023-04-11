@@ -3,8 +3,6 @@ from numpy.typing import NDArray
 
 from src.plotting import plot_points
 
-
-<<<<<<< HEAD
 def isclose(p: NDArray, q: NDArray) -> bool:
     return np.isclose(p, q).all()
 
@@ -47,28 +45,11 @@ def slow_convex_hull(points: NDArray) -> NDArray:
                             valid = False
                 if valid:
                     ch[tuple(p)] = tuple(q)
-=======
-def signed_area(p: NDArray, q: NDArray, r: NDArray) -> bool:
-
-    ##########################
-    ### PUT YOUR CODE HERE ###
-    ##########################
-
-    pass
-
-
-def slow_convex_hull(points: NDArray) -> NDArray:
->>>>>>> main
-
-    ##########################
-    ### PUT YOUR CODE HERE ###
-    ##########################
-
-    pass
+    return ch
 
 
 if __name__ == "__main__":
-    points = np.loadtxt("./points_5.txt")
+    points = np.loadtxt("./points_1.txt")
     plot_points(points, markersize=20)
 
     # Slow convex hull. Trivial to implement, but O(N^3)

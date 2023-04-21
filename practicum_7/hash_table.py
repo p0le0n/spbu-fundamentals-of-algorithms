@@ -41,7 +41,7 @@ class ChainedHashTable:
 
 if __name__ == "__main__":
     # Let's consider a couple of implementations of hash tables
-    with open("practicum_7/hash_table_cases.yaml", "r") as f:
+    with open("./hash_table_cases.yaml", "r") as f:
         cases = yaml.safe_load(f)
 
     ##########################
